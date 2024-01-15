@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-  let(:user) { create(:user, name: 'Supreeti K') }
-  let(:post) { create(:post, title: 'Test') }
+  let(:user) { create(:user, name: 'Supreeti') }
+  let(:post) { create(:post, title: 'Test user') }
 
   describe 'callbacks' do
     it 'updates the comments_counter after save' do
