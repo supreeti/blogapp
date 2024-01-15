@@ -7,7 +7,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: blogapp_development
+  database: Blog_development
   pool: 5
   username: postgres
   password: admin
@@ -16,7 +16,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: blogapp_test
+  database: Blog_test
   pool: 5
   username: postgres
   password: admin
@@ -24,7 +24,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: blogapp_production
+  database: Blog_production
   pool: 5
   username: postgres
   password: admin
