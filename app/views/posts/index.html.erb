@@ -1,1 +1,26 @@
 <h1>List of post for selected User</h1>
+<%# user card %>
+<a href="#">
+  <%= render partial: 'partials/users', locals: { user: @users } %>
+</a>
+<%# post card %>
+<% @posts.each do |post| %>
+  <a href="/users/<%= post.author_id%>/posts/<%= post.id%>">
+    <%= render partial: 'partials/posts', locals: { post: post } %>
+  </a>
+  <%# comment card %>
+
+  <div class="comments">
+    <ul>
+      <% post.recent_comments.each do |comment| %>
+        <li>
+          <%= render partial: 'partials/comment', locals: { comment: comment } %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="btn">
+  <button type="button" class="button_center">Select Post</button>
+</div>

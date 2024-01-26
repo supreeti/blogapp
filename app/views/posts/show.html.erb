@@ -1,1 +1,32 @@
 <h1>Selected post for a user</h1>
+<div class="container">
+  <div class="posts">
+    <div class="post_header">
+      <ul>
+        <li>
+          <h3>
+            <%= @post.title %> 
+            <span>by <%= @post.author.name %></span>
+          </h3>          
+        </li>
+        <li class="likes">
+          <span>Comments: <%= @post.comment_counter %></span>,
+          <span>Likes: <%= @post.like_counter %></span>
+        </li>
+      </ul>
+    </div>
+    <div class="post_txt">
+        <p><%= @post.text %></p>
+    </div>
+  </div>
+
+  <div class="comments">
+    <ul>
+      <% @post.recent_comments.each do |comment| %>
+        <li>
+          <%= render partial: 'partials/comment', locals: { comment: comment } %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
