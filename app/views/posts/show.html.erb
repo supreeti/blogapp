@@ -1,39 +1,25 @@
-<h1>Selected post for a user</h1>
 <div class="container">
-  <div class="posts">
-    <div class="post_header">
-      <ul>
-        <li>
-          <h3>
-            <%= @post.title %> 
-            <span>by <%= @post.author.name %></span>
-          </h3>          
-        </li>
-        <li class="likes">
-          <span>Likes: <%= @post.like_counter %></span>,
-          <span>Comments: <%= @post.comment_counter %></span>         
-        </li>
-      </ul>
+  <div class="user_info">
+    <div class="img">
+      <%= image_tag @user.photo, alt: "User Photo", class: "user-photo"%>
     </div>
-    <a href=""></a>
+    <div class="user">
+      <h2><%= @user.name %></h2>
+      <p><strong>Number of posts: </strong><%= @user.posts.count %></p>
     </div>
-    <div class="comments">
-      <p>Comments: <%= @count %></p>
-    <ul>
-      <% @post.recent_comments.each do |comment| %>
-        <li>
-          <%= render partial: 'partials/comment', locals: { comment: comment } %>
-        </li>
-      <% end %>
-    </ul>
   </div>
-<div class="btn">
-<%= form_with model: @like, url: user_post_likes_path(post_id: @post.id) do |form| %>
-  <span><%= form.submit "Like", class: 'button _center' %></span>
-<% end %>
-
-<div>
-  <%= link_to "Add Comment", new_user_post_comment_path(user_id:
-    @post.author.id, post_id: @post.id) class: 'button _center' %>
-</div>
-</div>
+  <div class="user_bio">
+    <p>Bio</p>
+    <p><%= @user.bio %></p>
+  </div>
+  <% @user.recent_posts.each_with_index do |post, index| %>
+    <div class="post">
+      <h3> <%= link_to "Post", user_post_path(@user, post) %> <%= index+1 %> </h2>
+      <p><%= post.title %></p>
+      <p class='count'>Comments: <%= post.comments.count %> | Likes: <%= post.likes.count %></p>
+    </div>
+    </div>
+  <% end %>
+  <div>
+  <%= link_to "See all posts",user_posts_path(@user), class: 'button_center' %> 
+  </div>

@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :set_users, only: %i[index show new]
+
   def index
     @users = User.find(params[:user_id])
     @posts = @users.posts
@@ -15,13 +17,15 @@ class PostsController < ApplicationController
   end
 
   def create
-    @posts = Post.new(posts_params)
-    @posts.author = current_user
+    @post = current_user.posts.new(post_params)
+    @user = current_user
 
-    if @posts.save
-      redirect_to user_post_path(user_id: current_user.id, id: @posts.id)
+    if @post.save
+      flash[:success] = 'Post was Successfully created'
+      redirect_to user_posts_path(current_user)
     else
-      render :new, status: :unprocessable_entity
+      flash[:error] = 'Error: post could not be saved'
+      render :new
     end
   end
 
@@ -29,5 +33,9 @@ class PostsController < ApplicationController
 
   def posts_params
     params.require(:post).permit(:title, :text)
+  end
+
+  def set_users
+    @user = User.find(params[:user_id])
   end
 end
