@@ -11,6 +11,7 @@
   <%# comment card %>
 
   <div class="comments">
+    <p>Comments Lists</p>
     <ul>
       <% post.recent_comments.each do |comment| %>
         <li>
@@ -22,5 +23,5 @@
 <% end %>
 
 <div class="btn">
-  <%= link_to "Pagination", user_posts_path(@users), class: 'button_center' %>
+  <%= link_to "Add Post", new_user_post_path(user_id: @current_user.id), class: 'button_center' %>
 </div>
