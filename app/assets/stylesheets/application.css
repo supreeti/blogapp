@@ -13,3 +13,103 @@
  *= require_tree .
  *= require_self
  */
+body {
+  font-family: sans-serif;
+  font-size: 16px;
+  color: #140909;
+}
+
+h3 {
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  color: inherit;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  padding: 8px 8px;
+  border-radius: 3px;
+  background-color: #ccc;
+  color: #fff;
+  cursor: pointer;
+}
+
+.button_center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.likes {
+  display: flex;
+  text-align: right;
+  flex-direction: row-reverse;
+}
+
+.posts,
+.comments {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.post_header ul {
+  display: flex;
+  justify-content: space-between;
+}
+
+li {
+  flex: 1;
+}
+
+.post_info {
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+.user_card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 50px;
+  margin-bottom: 15px;
+}
+
+.image {
+  flex-basis: 15%;
+}
+
+.image img {
+  width: 100%;
+}
+
+.user_info {
+  padding: 10px;
+  flex-basis: 80%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.user_card h3 {
+  margin: 0;
+}
+
+.user_card span {
+  font-size: 12px;
+  color: gray;
+}

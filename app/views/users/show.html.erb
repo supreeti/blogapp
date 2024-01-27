@@ -1,1 +1,17 @@
 <h1>Selected User</h1>
+<%= render 'partials/users', user: @user %>
+
+<div class="post">
+  <h3>Bio</h3>
+  <div class="post_show">
+    <p><%= @user.bio %></p>
+  </div>
+</div>
+
+<%@user.recent_posts.each do |post|%>
+  <%= render 'partials/posts', post: post %>
+<%end%>
+
+<div class="btn">
+  <%= link_to "See All Posts", user_posts_path(user_id: @user.id), class: 'button_center'%>
+</div>

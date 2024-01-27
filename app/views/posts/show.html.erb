@@ -1,1 +1,32 @@
 <h1>Selected post for a user</h1>
+<div class="container">
+  <div class="posts">
+    <div class="post_header">
+      <ul>
+        <li>
+          <h3>
+            <%= @post.title %> 
+            <span>by <%= @post.author.name %></span>
+          </h3>          
+        </li>
+        <li class="likes">
+          <span>Likes: <%= @post.like_counter %></span>,
+          <span>Comments: <%= @post.comment_counter %></span>         
+        </li>
+      </ul>
+    </div>
+    <a href=""></a>
+    </div>
+    <div class="comments">
+    <ul>
+      <% @post.recent_comments.each do |comment| %>
+        <li>
+          <%= render partial: 'partials/comment', locals: { comment: comment } %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+<div class="btn">
+    <%= link_to "Pagination", user_posts_path(@users), class: 'button _center'%>
+</div>
