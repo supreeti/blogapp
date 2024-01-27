@@ -10,17 +10,14 @@
           </h3>          
         </li>
         <li class="likes">
-          <span>Comments: <%= @post.comment_counter %></span>,
-          <span>Likes: <%= @post.like_counter %></span>
+          <span>Likes: <%= @post.like_counter %></span>,
+          <span>Comments: <%= @post.comment_counter %></span>         
         </li>
       </ul>
     </div>
-    <div class="post_txt">
-        <p><%= @post.text %></p>
+    <a href=""></a>
     </div>
-  </div>
-
-  <div class="comments">
+    <div class="comments">
     <ul>
       <% @post.recent_comments.each do |comment| %>
         <li>
@@ -29,4 +26,7 @@
       <% end %>
     </ul>
   </div>
+
+<div class="btn">
+    <%= link_to "Pagination", user_posts_path(@users), class: 'button _center'%>
 </div>
