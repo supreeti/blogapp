@@ -1,25 +1,30 @@
 <div class="container">
-  <div class="user_info">
-    <div class="img">
-      <%= image_tag @user.photo, alt: "User Photo", class: "user-photo"%>
+  <h1>Posts Detail</h1>
+  <div class="posts">
+    <div class="post_header">
+      <%= image_tag @user.photo, alt: "User Photo", class: "image" %>
     </div>
     <div class="user">
-      <h2><%= @user.name %></h2>
-      <p><strong>Number of posts: </strong><%= @user.posts.count %></p>
+      <h5>Post <%= @post.author_id %> <%= @post.title %> by <%= @user.name %></h5>
+      <ul>
+        <li class="like-form">
+          <%= form_with model: Like, method: :post, url: user_posts_path(@user, @post), local: true, scope: :like do |form| %>
+            <%= form.submit "Like", class: "button_center" %>
+            <%= form.hidden_field :post_id, value: @post.author_id %>
+          <% end %>
+        </li>
+      </ul>
+      <p class='likes'>Comments: <%= @post.comment_counter %> | Likes: <%= @post.like_counter %></p>
     </div>
-  </div>
-  <div class="user_bio">
-    <p>Bio</p>
-    <p><%= @user.bio %></p>
-  </div>
-  <% @user.recent_posts.each_with_index do |post, index| %>
     <div class="post">
-      <h3> <%= link_to "Post", user_post_path(@user, post) %> <%= index+1 %> </h2>
-      <p><%= post.title %></p>
-      <p class='count'>Comments: <%= post.comments.count %> | Likes: <%= post.likes.count %></p>
+      <p><%= @post.text %></p>
     </div>
-    </div>
-  <% end %>
-  <div>
-  <%= link_to "See all posts",user_posts_path(@user), class: 'button_center' %> 
   </div>
+
+  <div class="comments">
+    <h5>Recent Comments</h5>
+    <% @post.comments.order(created_at: :desc).each do |comment| %>
+      <%= render partial: "/partials/comment", locals: { comment: comment } %>
+    <% end %>
+  </div>
+</div>

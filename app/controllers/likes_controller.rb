@@ -1,25 +1,19 @@
 class LikesController < ApplicationController
-  before_action :set_user_and_post, only: %i[new create]
 
   def new
     @like = Like.new
   end
 
   def create
-    @post = Post.find(params[:post_id])
-    @like = Like.new(user_id: current_user.id, post_id: @post.id)
+    @like = Like.new(user: @user, post: @post)
 
     if @like.save
-      redirect_to user_post_path(@user, @post), notice: 'You liked this post!'
+      @post.increment!(:like_counter)
+      flash[:notice] = 'Like created successfully!'
     else
-      redirect_to user_post_path(@user, @post), alert: 'Unable to like this post.'
+      flash[:alert] = 'An error occurred'
     end
-  end
 
-  private
-
-  def set_user_and_post
-    @user = User.find(params[:user_id])
-    @post = Post.find(params[:post_id])
+    redirect_to user_post_path(user_id: @post.author_id, id: @post.id)
   end
 end

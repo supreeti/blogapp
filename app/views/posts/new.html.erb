@@ -1,18 +1,18 @@
 <h1>Add new Post</h1>
 
-<%= form_with model: [@post], url: user_posts_path(@user), method: :post do |form| %>
+<%= form_with model: @post, url: posts_path, method: :post(user_id: @user.id) do |form| %> 
   <div>
     <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.text_field="title" %>
   </div>
 
   <div>
     <%= form.label :text %>
-    <%= form.text_area :text %>
+    <%= form.text_area="text" %>
   </div>
 
   <div>
-    <%= form.submit "Submit" %>
+    <%= form.submit "Create Post" %>
   </div>
 <% end %>
 

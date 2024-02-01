@@ -1,4 +1,5 @@
-<h1>Selected User</h1>
+<h1>Selected User Details</h1>
+
 <%= render 'partials/users', user: @user %>
 
 <div class="post">
@@ -8,10 +9,12 @@
   </div>
 </div>
 
-<%@user.recent_posts.each do |post|%>
+<%@user.recent_posts.each do |post| %>
+<a href="/users/<%= @user.id %>/posts/<%= post.id %>">
   <%= render 'partials/posts', post: post %>
+  </a>
 <%end%>
-
+<button type="button"><%= link_to "Post", user_posts_path( user_id: @user.id) %></button>
 <div class="btn">
   <%= link_to "See All Posts", user_posts_path(user_id: @user.id), class: 'button_center'%>
 </div>

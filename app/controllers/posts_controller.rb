@@ -1,24 +1,24 @@
 class PostsController < ApplicationController
-  before_action :set_users, only: %i[index show new]
+  before_action :set_user
+  before_action :post_params, only: [:create]
 
   def index
-    @users = User.find(params[:user_id])
-    @posts = @users.posts
+    @user = User.find(params[:user_id])
+    @post = @user.posts
   end
 
   def show
-    @users = User.find(params[:user_id])
-    @posts = @users.posts.find(params[:id])
+    @user = User.find(params[:user_id])
+    @post = @user.posts.find(params[:id])
   end
 
   def new
-    @users = User.find(params[:user_id])
-    @posts = Post.new
+    @user = User.find(params[:user_id])
+    @post = Post.new
   end
 
   def create
-    @post = current_user.posts.new(post_params)
-    @user = current_user
+    @post = current_user.posts.build(post_params)
 
     if @post.save
       flash[:success] = 'Post was Successfully created'
@@ -31,11 +31,11 @@ class PostsController < ApplicationController
 
   private
 
-  def posts_params
+  def post_params
     params.require(:post).permit(:title, :text)
   end
 
-  def set_users
+  def set_user
     @user = User.find(params[:user_id])
   end
 end

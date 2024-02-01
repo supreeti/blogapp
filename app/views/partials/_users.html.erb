@@ -1,9 +1,9 @@
 <div class="user_card">
-  <div class="image">
-      <img src="<%= user.photo %>" alt="<%= user.name %>">
-  </div>
-  <div class="user_info">
-      <h1><%= link_to user.name, user_path(user) %></h1>
-      <span class="likes">Number of posts: <%= user.post_counter %></span>
-  </div>
+    <div class="image">
+        <img src="<%= user.photo %>" alt="<%= user.name %>">
+    </div>
+    <div class="user_info">
+        <p><%= user.name %></p>
+        <p class="likes">Number of posts: <%= user.post_counter || 0 %></p>
+    </div>
 </div>

@@ -113,3 +113,7 @@ li {
   font-size: 12px;
   color: gray;
 }
+
+.post-comments {
+  margin: 0 30px;
+}
