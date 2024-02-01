@@ -12,8 +12,8 @@ class CommentsController < ApplicationController
     @comment.post = @post
 
     if @comment.save
-      @new_comment.update_comment_counter
-      redirect_to user_post_path(current_user.id, @post.id)
+      @comment.update_comment_counter
+      redirect_to user_posts_path(current_user.id, @post.id)
     else
       render 'new'
     end

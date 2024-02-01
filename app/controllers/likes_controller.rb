@@ -14,6 +14,6 @@ class LikesController < ApplicationController
       flash[:alert] = 'An error occurred'
     end
 
-    redirect_to user_post_path(user_id: @post.author_id, id: @post.id)
+    redirect_to user_posts_path(user_id: @post.author_id, id: @post.id)
   end
 end
