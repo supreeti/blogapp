@@ -1,10 +1,10 @@
 <h1>List of post for selected User</h1>
 <%# user card %>
 <a href="#">
-  <%= render partial: 'partials/users', locals: { user: @users } %>
+  <%= render partial: 'partials/users', locals: { user: @user } %>
 </a>
 <%# post card %>
-<% @posts.each do |post| %>
+<% @post.each do |post| %>
   <a href="/users/<%= post.author_id%>/posts/<%= post.id%>">
     <%= render partial: 'partials/posts', locals: { post: post } %>
   </a>
@@ -22,5 +22,5 @@
 <% end %>
 
 <div class="btn">
-  <%= link_to "Pagination", user_posts_path(@users), class: 'button_center' %>
+  <button><%= link_to "Pagination", user_posts_path(@user), class: 'button_center' %></button>
 </div>

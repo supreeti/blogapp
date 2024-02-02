@@ -113,3 +113,13 @@ li {
   font-size: 12px;
   color: gray;
 }
+
+.users-link,
+.user-post-link {
+  text-decoration: none;
+  color: black;
+}
+
+.post-comments {
+  margin: 0 30px;
+}

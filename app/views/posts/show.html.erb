@@ -1,32 +1,30 @@
-<h1>Selected post for a user</h1>
 <div class="container">
+  <h1>Posts Detail</h1>
   <div class="posts">
     <div class="post_header">
+      <%= image_tag @user.photo, alt: "User Photo", class: "image" %>
+    </div>
+    <div class="user">
+      <h5>Post <%= @post.author_id %> <%= @post.title %> by <%= @user.name %></h5>
       <ul>
-        <li>
-          <h3>
-            <%= @post.title %> 
-            <span>by <%= @post.author.name %></span>
-          </h3>          
-        </li>
-        <li class="likes">
-          <span>Likes: <%= @post.like_counter %></span>,
-          <span>Comments: <%= @post.comment_counter %></span>         
+        <li class="like-form">
+          <%= form_with model: Like, method: :post, url: user_posts_path(@user, @post), local: true, scope: :like do |form| %>
+            <%= form.submit "Like", class: "button_center" %>
+            <%= form.hidden_field :post_id, value: @post.author_id %>
+          <% end %>
         </li>
       </ul>
+      <p class='likes'>Comments: <%= @post.comment_counter %> | Likes: <%= @post.like_counter %></p>
     </div>
-    <a href=""></a>
+    <div class="post">
+      <p><%= @post.text %></p>
     </div>
-    <div class="comments">
-    <ul>
-      <% @post.recent_comments.each do |comment| %>
-        <li>
-          <%= render partial: 'partials/comment', locals: { comment: comment } %>
-        </li>
-      <% end %>
-    </ul>
   </div>
 
-<div class="btn">
-    <%= link_to "Pagination", user_posts_path(@users), class: 'button _center'%>
+  <div class="comments">
+    <h5>Recent Comments</h5>
+    <% @post.comments.order(created_at: :desc).each do |comment| %>
+      <%= render partial: "/partials/comment", locals: { comment: comment } %>
+    <% end %>
+  </div>
 </div>
