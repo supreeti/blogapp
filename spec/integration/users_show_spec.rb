@@ -11,4 +11,27 @@ RSpec.describe 'Users#shows', type: :integration do
                          post_counter: 0)
     @users = User.all
   end
+  
+  it 'I can see the user\'s profile picture..' do
+    visit "/users/#{@tom.id}"
+    expect(page).to have_css("img[src='https://placehold.co/200x133']")
+  end
+  it 'I can see the user\'s username.' do
+    visit "/users/#{@tom.id}"
+    expect(page).to have_content('Tom')
+  end
+  it 'I can see the number of posts the user has written.' do
+    visit "/users/#{@tom.id}"
+    expect(page).to have_content('Number of posts: 1')
+  end
+  it 'I can see the user\'s bio.' do
+    visit "/users/#{@tom.id}"
+    expect(page).to have_content('Teacher from Mexico.')
+  end
+  it 'I can see the user\'s first 3 posts.' do
+    visit "/users/#{@tom.id}"
+    posts = @users[0].recent_posts
+    posts.each do |post|
+      expect(page).to have_content(post.title)
+ end
 end
