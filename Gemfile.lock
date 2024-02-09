@@ -271,7 +271,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
-  capybara
+  capybara (~> 3.35)
   debug
   factory_bot_rails
   importmap-rails

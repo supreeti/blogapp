@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :post_params, only: [:create]
 
   def index
-    @user = User.find(params[:user_id])
+    @user = User.includes(posts: :comments).find(params[:user_id])
     @post = @user.posts
   end
 
