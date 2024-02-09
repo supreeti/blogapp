@@ -35,3 +35,21 @@ RSpec.describe 'Users#shows', type: :integration do
       expect(page).to have_content(post.title)
  end
 end
+it 'I can see a button that lets me view all of a user\'s posts.' do
+  visit "/users/#{@tom.id}"
+  expect(page).to have_content('See all posts')
+end
+it 'When I click a user\'s post, it redirects me to that post\'s show page.' do
+  visit "/users/#{@tom.id}"
+  posts = @users[0].recent_posts
+  unless posts.nil? || posts.empty?
+    click_link posts[0].title
+    expect(page).to have_current_path("/users/#{@tom.id}/posts/#{posts[0].id}")
+  end
+end
+it 'When I click to see all posts, it redirects me to the user\'s post\'s index page.' do
+  visit "/users/#{@tom.id}"
+  click_link 'See all posts'
+  expect(page).to have_current_path("/users/#{@tom.id}/posts")
+end
+end
