@@ -94,7 +94,7 @@ rspec spec --format documentation
 - Twitter: [@Ksupreeti](https://twitter.com/Ksupreeti)
 - LinkedIn: [Supreeti](https://www.linkedin.com/in/supreeti-kushwaha-23336232/)
 
-<!-- FUTURE FEATURES -->
+<!-- FUTURE FEATURE -->
 
 ## 🔭 Future Features <a name="future-features"></a>
 
