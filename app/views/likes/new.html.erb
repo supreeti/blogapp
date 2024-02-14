@@ -1,5 +1,5 @@
 
-<%= form_with model: Like.new, method: :post, url: likes_path(@user, @post) do |form| %>
+<%= form_with model: Like.new, method: :post, url: user_post_likes_path(@user, @post) do |form| %>
   <h1>Create Like</h1>
 <div>
 <p><%= form.submit "Create Like", class: 'button_center' %></p>

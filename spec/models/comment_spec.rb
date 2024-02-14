@@ -1,13 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-  let(:user) { create(:user, name: 'Supreeti') }
-  let(:post) { create(:post, title: 'Test user') }
-
-  describe 'callbacks' do
-    it 'updates the comments_counter after save' do
-      comment = build(:comment, post:, user:) # Use the post and user objects
-      expect { comment.save }.to change { post.reload.comment_counter }.by(1)
-    end
+  it 'should update comments counter after save' do
+    comment = create(:comment)
+    post = comment.post
+    expect do
+      comment.update_attribute(:attribute, 'new value')
+      post.reload
+    end.to change(post, :comment_counter).by(1)
   end
 end

@@ -16,7 +16,7 @@ RSpec.describe 'Users', type: :request do
     it 'includes correct placeholder text in the response body' do
       get users_path
       expect(response).to have_http_status(:success)
-      expect(response.body).to include('List of Users')
+      expect(response.body).to include('Users Blog')
     end
   end
 

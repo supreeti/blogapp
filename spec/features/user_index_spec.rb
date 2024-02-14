@@ -1,4 +1,4 @@
-RSpec.feature 'UserIndices', type: :feature do
+RSpec.describe 'UserIndex', type: :features do
   before :each do
     @user1 = User.create(
       name: 'John',

@@ -1,6 +1,6 @@
 <h1>Add new Post</h1>
 
- <%= form_with model: @post, url: user_posts_path(user_id: @user.id) do |form| %> 
+ <%= form_with model: @post, url: user_posts_path(@user) do |form| %> 
   <div>
     <%= form.label :title %>
     <%= form.text_field :title %>
