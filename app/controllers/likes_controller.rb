@@ -1,10 +1,14 @@
 class LikesController < ApplicationController
   def new
     @like = Like.new
+    @post = Post.find(params[:post_id])
+    @user = User.find(params[:user_id])
   end
 
   def create
-    @like = Like.new(user: @user, post: @post)
+    @user = current_user
+    @post = Post.find(params[:post_id])
+    @like = Like.new(user_id: @user.id, post_id: @post.id)
 
     if @like.save
       @post.increment!(:like_counter)
@@ -13,6 +17,6 @@ class LikesController < ApplicationController
       flash[:alert] = 'An error occurred'
     end
 
-    redirect_to user_posts_path(user_id: @post.author_id, id: @post.id)
+    redirect_to user_posts_path(@user, @post)
   end
 end
